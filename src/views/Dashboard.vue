@@ -1,10 +1,20 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getProfile } from '@/services/accountServices.js'
+import { logout } from "@/services/authServices.js";
+import { useToast } from 'vue-toastification'
+import router from "@/router/index.js"
 
+const toast = useToast()
 const username_ = ref(null)
 const email_ = ref(null)
 const bio_ = ref(null)
+
+async function handleLogout() {
+  logout()
+  toast.info("Logged out")
+  await router.push("/login")
+}
 
 onMounted(async () => {
   try {
@@ -14,55 +24,33 @@ onMounted(async () => {
     email_.value = email
     bio_.value = bio || 'empty'
   } catch (error) {
-    alert('Something went wrong')
+    toast.error('Error Fetching Profile')
   }
 })
 </script>
 
 <template>
-  <div class="container dashboard-card">
-    <header class="form-title">Profile</header>
-    <ul class="profile-list">
-      <li><strong>Username:</strong> {{ username_ }}</li>
-      <li><strong>Email:</strong> {{ email_ }}</li>
-      <li><strong>Bio:</strong> {{ bio_ }}</li>
+  <div class="min-h-screen bg-gray-900 flex items-center justify-center">
+  <div
+      class="mt-12 p-8 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-md max-w-sm mx-auto min-w-96"
+  >
+    <header class="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">Profile</header>
+    <ul class="space-y-4">
+      <li class="text-base bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <strong class="text-indigo-600 dark:text-indigo-400 mr-2">Username:</strong> {{ username_ }}
+      </li>
+      <li class="text-base bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <strong class="text-indigo-600 dark:text-indigo-400 mr-2">Email:</strong> {{ email_ }}
+      </li>
+      <li class="text-base bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <strong class="text-indigo-600 dark:text-indigo-400 mr-2">Bio:</strong> {{ bio_ }}
+      </li>
     </ul>
+    <div class="mt-6 max-w-md mx-auto">
+      <button @click="handleLogout" class="w-full p-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-sm transition">
+        Log out
+      </button>
+    </div>
+  </div>
   </div>
 </template>
-
-<style scoped>
-.dashboard-card {
-  margin-top: 3rem;
-  padding: 2rem 2.5rem;
-  background-color: var(--color-background-soft);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.profile-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 1.5rem;
-}
-
-.profile-list li {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  background: var(--color-background);
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(60, 60, 60, 0.08);
-  transition: background-color 0.3s ease;
-}
-
-.profile-list li strong {
-  color: var(--vt-c-indigo);
-  margin-right: 0.5rem;
-}
-
-.profile-list li:hover {
-  background-color: var(--color-background-mute);
-}
-</style>

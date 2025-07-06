@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
                 return axiosInstance(originalRequest)
             } catch (error) {
                 logout()
-                window.location.href = '/login'
+                window.location.reload()
             }
         }
 

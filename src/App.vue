@@ -1,18 +1,5 @@
 <template>
-  <div id="app" class="app-container">
+  <Transition name="fade" mode="out-in">
     <router-view />
-  </div>
+  </Transition>
 </template>
-
-<style>
-html, body, #app {
-  height: 100%;
-  overflow-x: hidden;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-</style>
