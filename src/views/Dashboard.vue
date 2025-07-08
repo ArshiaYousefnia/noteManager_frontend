@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getProfile, editProfile } from '@/services/accountServices.js'
-import { logout } from "@/services/authServices.js";
+import { logout } from "@/services/authServices.js"
 import { useToast } from 'vue-toastification'
 import router from "@/router/index.js"
 

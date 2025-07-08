@@ -8,6 +8,11 @@ const toast = useToast()
 const username = ref("")
 const password = ref("")
 const email = ref("")
+const emit = defineEmits(['toggle-card'])
+
+function emitToggle() {
+  emit("toggle-card")
+}
 
 async function signUp() {
   try {
@@ -19,8 +24,8 @@ async function signUp() {
 
     if (res.status === 201) {
       toast.success("Signed Up Successfully")
-      await router.push("/login")
     }
+    emit("toggle-card")
   } catch (error) {
     toast.error("Signup failed")
   }
@@ -28,7 +33,6 @@ async function signUp() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-900 flex items-center justify-center">
   <form
       @submit.prevent="signUp"
       class="max-w-sm mt-12 p-8 rounded-xl bg-gray-100 dark:bg-gray-800 shadow-lg border border-gray-300 dark:border-gray-600 mx-auto space-y-5"
@@ -65,13 +69,15 @@ async function signUp() {
         autocomplete="new-password"
         aria-label="Password"
     />
-
     <button
         type="submit"
-        class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md transition"
-    >
-      Sign Up
+        class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md" >
+      Signup
+    </button>
+    <button
+        type="button" @click="emitToggle"
+        class="bg-red-500 hover:bg-red-600 py-2 w-full text-white font-medium rounded-md" >
+      Already have an account? Login
     </button>
   </form>
-  </div>
 </template>
