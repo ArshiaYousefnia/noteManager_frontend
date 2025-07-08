@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import axiosInstance from "@/api/axios.js"
-import router from "@/router/index.js"
-import {useToast} from "vue-toastification";
+import {useToast} from "vue-toastification"
 
 const toast = useToast()
 const username = ref("")
