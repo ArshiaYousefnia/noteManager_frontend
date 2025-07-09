@@ -3,3 +3,6 @@ dist
 .dockerignore
 Dockerfile
 .git
+.idea
+docker-compose.yml
+.gitignore
