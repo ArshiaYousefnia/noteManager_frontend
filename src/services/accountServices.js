@@ -23,9 +23,9 @@ export async function editAccount(username, email, bio) {
  export async function createAccount(username, email, password) {
     try {
         return await axiosInstance.post("/account/", {
-            username: username.value,
-            password: password.value,
-            email: email.value,
+            username: username,
+            password: password,
+            email: email,
         })
     } catch (error) {
         throw error
