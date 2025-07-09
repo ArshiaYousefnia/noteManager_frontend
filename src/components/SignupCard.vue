@@ -35,7 +35,6 @@ async function signUp() {
   <form
       @submit.prevent="signUp"
       class="max-w-sm mt-12 p-8 rounded-xl bg-gray-100 dark:bg-gray-800 shadow-lg border border-gray-300 dark:border-gray-600 mx-auto space-y-5"
-      novalidate
   >
     <h2 class="text-2xl font-semibold text-center text-gray-800 dark:text-gray-100">Sign Up</h2>
 

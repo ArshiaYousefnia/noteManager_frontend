@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from "vue"
-import LoginCard from "@/views/LoginCard.vue"
-import SignupCard from "@/views/SignupCard.vue"
+import LoginCard from "@/components/LoginCard.vue"
+import SignupCard from "@/components/SignupCard.vue"
 
 const showLoginCard = ref(true)
 
