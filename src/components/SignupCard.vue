@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue"
-import axiosInstance from "@/api/axios.js"
 import {useToast} from "vue-toastification"
+import {createAccount} from "@/services/accountServices.js";
 
 const toast = useToast()
 const username = ref("")
@@ -15,16 +15,14 @@ function emitToggle() {
 
 async function signUp() {
   try {
-    const res = await axiosInstance.post("/accounts/register/", {
-      username: username.value,
-      password: password.value,
-      email: email.value,
-    })
+    const res = createAccount(username.value, email.value, password.value)
 
     if (res.status === 201) {
       toast.success("Signed Up Successfully")
+      emit("toggle-card")
+    } else {
+      toast.error("Signup failed")
     }
-    emit("toggle-card")
   } catch (error) {
     toast.error("Signup failed")
   }

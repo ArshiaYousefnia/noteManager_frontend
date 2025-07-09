@@ -3,7 +3,7 @@ import {onMounted, ref} from "vue"
 import {logout} from "@/services/authServices.js"
 import router from "@/router/index.js"
 import {useToast} from "vue-toastification"
-import {getProfile} from "@/services/accountServices.js";
+import {getAccount} from "@/services/accountServices.js"
 
 const toast = useToast()
 const username_ = ref(null)
@@ -23,7 +23,7 @@ async function handleLogout() {
 
 onMounted(async () => {
   try {
-    const response = await getProfile()
+    const response = await getAccount()
     const { username, email, bio } = response.data
     username_.value = username
     email_.value = email

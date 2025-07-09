@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import {editProfile, getProfile} from "@/services/accountServices.js";
+import {editAccount, getAccount} from "@/services/accountServices.js";
 import {useToast} from "vue-toastification";
 
 const toast = useToast()
@@ -23,7 +23,7 @@ async function handleEditProfile() {
       toast.info("No change applied to save")
       return
     }
-    await editProfile(username_edit.value, email_edit.value, bio_edit.value);
+    await editAccount(username_edit.value, email_edit.value, bio_edit.value);
     toast.success("Profile edited")
 
     username_.value = username_edit.value
@@ -38,7 +38,7 @@ async function handleEditProfile() {
 
 onMounted(async () => {
   try {
-    const response = await getProfile()
+    const response = await getAccount()
     const { username, email, bio } = response.data
     username_.value = username
     email_.value = email
