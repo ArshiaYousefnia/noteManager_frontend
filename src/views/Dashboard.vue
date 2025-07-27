@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import EditProfileCard from "@/components/EditProfileCard.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
+import Notes from "@/components/Notes.vue";
 
 const showProfileCard = ref(true)
 
@@ -23,5 +24,6 @@ const toggleCard = () => {
       <ProfileCard @toggleProfile="toggleCard" v-if="showProfileCard"/>
       <EditProfileCard @toggleProfile="toggleCard" v-else/>
     </transition>
+    <Notes/>
   </div>
 </template>
