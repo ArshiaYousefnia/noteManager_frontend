@@ -15,7 +15,7 @@ function emitToggle() {
 
 async function signUp() {
   try {
-    const res = createAccount(username.value, email.value, password.value)
+    const res = await createAccount(username.value, email.value, password.value)
 
     if (res.status === 201) {
       toast.success("Signed Up Successfully")
