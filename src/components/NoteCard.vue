@@ -5,7 +5,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
+  <div
+      class="mt-12 p-8 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-md max-w-sm mx-auto min-w-96"
+  >
     <header> {{data.title}} </header>
     <header> {{data.uuid}} </header>
     <ul>
@@ -20,8 +22,12 @@ const props = defineProps({
       </li>
     </ul>
     <div>
-      <button>Edit</button>
-      <button>Delete</button>
+      <button class="col-span-2 w-full p-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-sm transition">
+        Edit
+      </button>
+      <button class="col-span-2 w-full p-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-sm transition">
+        Delete
+      </button>
     </div>
   </div>
 </template>
