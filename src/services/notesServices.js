@@ -2,7 +2,7 @@ import axiosInstance from "@/api/axios.js";
 
 export async function getNotes() {
     try {
-        return await axiosInstance.get("/notes")
+        return await axiosInstance.get("/notes/")
     } catch (error) {
         throw error
     }
@@ -10,7 +10,7 @@ export async function getNotes() {
 
 export async function newNote(title, content) {
     try {
-        return await axiosInstance.post("/notes", {
+        return await axiosInstance.post("/notes/", {
             title: title,
             content: content
         })
